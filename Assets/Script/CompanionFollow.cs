@@ -6,8 +6,14 @@ public class CompanionFollow : MonoBehaviour
     public float followSpeed; // Speed of following
     public float followDistance; // Distance threshold for following
 
+    void Start()
+    {
+        
+    }
     void Update()
     {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Companion"), LayerMask.NameToLayer("Player"));
+        
         // Calculate distance between Companion and Player
         float distance = Vector3.Distance(transform.position, player.position);
 
