@@ -8,11 +8,10 @@ public class CompanionFollow : MonoBehaviour
 
     void Start()
     {
-        
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Companion"), LayerMask.NameToLayer("Player"));
     }
     void Update()
     {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Companion"), LayerMask.NameToLayer("Player"));
         
         // Calculate distance between Companion and Player
         float distance = Vector3.Distance(transform.position, player.position);
