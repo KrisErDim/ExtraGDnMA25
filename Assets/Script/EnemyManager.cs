@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-        void Update()
+    void Update()
     {
         // Move toward the Companion
         transform.position = Vector3.MoveTowards(transform.position, companion.position, speed * Time.deltaTime);
@@ -24,11 +24,6 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("Hit");
         }
 
-        // Check if the enemy touches the Companion
-        if (collision.gameObject.CompareTag("Companion"))
-        {
-            // Call GameOver
-        }
     }
     void TakeDamage()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5522893185948255443}
   - component: {fileID: 5835271006920017316}
   - component: {fileID: 1840882425288316408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'Bullet '
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8630818565154864534}
   - component: {fileID: 8635964053852133948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4265103055626529281}
   - component: {fileID: 3929036721868022460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

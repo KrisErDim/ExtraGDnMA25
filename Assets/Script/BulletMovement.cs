@@ -17,6 +17,7 @@ public class BulletMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, lifeTime);
     }
