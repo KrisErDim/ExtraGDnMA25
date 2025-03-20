@@ -8,6 +8,7 @@ TagManager:
   - DestroyableObject
   - Bullet
   - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX

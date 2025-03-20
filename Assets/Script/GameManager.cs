@@ -3,23 +3,37 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameOverScreen;
-
+    // Called when the game is over
     public void GameOver()
     {
-        gameOverScreen.SetActive(true); // Tampilkan layar game over
-        Time.timeScale = 0f; // Pause game
+        UIManager.Instance.ShowGameOver();
+        Time.timeScale = 0f; // Pause the game
     }
 
+    // Restart the current level
     public void Retry()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload level
+        Time.timeScale = 1f; // Resume time
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload the current scene
     }
 
+    // Load the Main Menu scene
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Load scene main menu
+        Time.timeScale = 1f; // Resume time
+        SceneManager.LoadScene("MainMenu"); // Load main menu scene
+    }
+
+    // Load the Game Scene when starting a new game
+    public void StartGame()
+    {
+        SceneManager.LoadScene("GameScene"); // Load the game scene
+    }
+
+    // Quit the application
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit!"); // Works in built game
     }
 }

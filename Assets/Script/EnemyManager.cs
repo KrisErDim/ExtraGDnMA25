@@ -10,9 +10,18 @@ public class EnemyManager : MonoBehaviour
     public GameObject hpBarGreen;  // The green HP bar (current health)
     public GameObject hpBarRed;  // The red HP bar (full health background)
     public Vector3 hpBarOffset = new Vector3(0f, 1f, 0f);  // Adjust the offset for HP bar above the enemy
+    public GameObject coinPrefab; 
 
     void Start()
     {
+        if (companion == null) 
+        {
+            companion = GameObject.FindGameObjectWithTag("Companion")?.transform;
+            if (companion == null)
+            {
+                Debug.LogError("Companion not found! Make sure your companion has the correct tag.");
+            }
+        }
         currentHealth = maxHealth;
 
         if (hpBarGreen != null && hpBarRed != null)
@@ -23,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     void Update()
-    {
+    {    
         // Move toward the Companion
         transform.position = Vector3.MoveTowards(transform.position, companion.position, speed * Time.deltaTime);
         
@@ -34,7 +43,7 @@ public class EnemyManager : MonoBehaviour
             hpBarRed.transform.position = transform.position + hpBarOffset;
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -47,10 +56,7 @@ public class EnemyManager : MonoBehaviour
     void TakeDamage()
     {
         currentHealth--;
-        if (currentHealth <= 0)
-        {
-            Destroyed();
-        }
+
 
         // Show the HP bar if health is not full or after taking damage
         if (hpBarGreen != null && hpBarRed != null)
@@ -58,20 +64,36 @@ public class EnemyManager : MonoBehaviour
             hpBarGreen.SetActive(true);  // Show the green bar
             hpBarRed.SetActive(true);
             UpdateHpBar();  // Update HP bar size
+            
+            if (currentHealth <= 0)
+            {
+                Destroyed();
+            }
         }
     }
 
     private void UpdateHpBar()
     {
-        // Update the green bar's width based on the current health
-        float healthPercentage = (float)currentHealth / maxHealth;
-        Vector3 scale = hpBarGreen.transform.localScale;
-        scale.x = healthPercentage;  // Adjust the width of the green bar
-        hpBarGreen.transform.localScale = scale;
+        if (hpBarGreen != null)
+        {
+            // Update the green bar's width based on the current health
+            float healthPercentage = (float)currentHealth / maxHealth;
+            Vector3 scale = hpBarGreen.transform.localScale;
+            scale.x = healthPercentage;  // Adjust the width of the green bar
+            hpBarGreen.transform.localScale = scale;
+        }
     }
-
     void Destroyed()
     {
-        Destroy(gameObject); 
+        UIManager.Instance.KillCount(); // Update UI
+        
+        // Drop a coin when the enemy dies
+        if (coinPrefab != null)
+        {
+            Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        }
+        
+        Destroy(gameObject);
     }
 }
+

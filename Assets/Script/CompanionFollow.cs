@@ -11,11 +11,11 @@ public class CompanionFollow : MonoBehaviour
     public int CompmaxHealth;
     private bool isInvincible = false; // Untuk cooldown hit
     public float invincibilityDuration = 1.5f; // Cooldown antar hit
-    public Image hpBarImage; // Reference to the HP bar image
+
     void Start()
     {
         CompcurrentHealth = CompmaxHealth; // Companion HP
-        UpdateHPBar(); // Set HP bar at start
+        UpdateHpBar(); // Set HP bar at start
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Companion"), LayerMask.NameToLayer("Player"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Companion"), LayerMask.NameToLayer("Bullet"));
@@ -44,8 +44,9 @@ public class CompanionFollow : MonoBehaviour
 
     void TakeDamage()
     {
-        CompcurrentHealth--;
-        UpdateHPBar(); // Update HP bar 
+        //returns the higher of the two values.
+        CompcurrentHealth = Mathf.Max(CompcurrentHealth - 1, 0); 
+        UpdateHpBar(); // Update HP bar 
 
         if (CompcurrentHealth <= 0)
         {
@@ -56,24 +57,19 @@ public class CompanionFollow : MonoBehaviour
             StartCoroutine(InvincibilityCooldown()); // Mulai cooldown
         }
     }
-    void UpdateHPBar()
-    {
-        if (hpBarImage != null)
-        {
-            Debug.Log("hpUpdate");
-            hpBarImage.fillAmount = (float)CompcurrentHealth / CompmaxHealth; // Normalize from 0 to 1
-        }
-    }
-
     IEnumerator InvincibilityCooldown()
     {
         isInvincible = true; // Companion kebal sementara
         yield return new WaitForSeconds(invincibilityDuration); // Tunggu cooldown selesai
         isInvincible = false; // Bisa kena hit lagi
     }
+    private void UpdateHpBar()
+    {
+        UIManager.Instance.UpdateCompanionHP(CompcurrentHealth, CompmaxHealth);
+    }
     void Destroyed()
     {
         Destroy(gameObject); 
-        //FindObjectOfType<GameManager>().GameOver();
+        FindFirstObjectByType<GameManager>().GameOver();
     }
 }
