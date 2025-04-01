@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f; // Resume time
-        SceneManager.LoadScene("MainMenu"); // Load main menu scene
+        SceneManager.LoadScene(0); // Load main menu scene
     }
 
     // Load the Game Scene when starting a new game

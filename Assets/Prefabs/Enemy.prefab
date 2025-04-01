@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5590721418429913343}
   - component: {fileID: 3628241615766468379}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HpBar Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296719197993759614}
   - component: {fileID: 5427125325489676659}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HpBar Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 4772600847076410854}
   - component: {fileID: 8960450683416943383}
   - component: {fileID: 1415413825609592839}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

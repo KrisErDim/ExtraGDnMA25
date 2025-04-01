@@ -10,7 +10,7 @@ public class DestroyableObject : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {

@@ -69,7 +69,6 @@ public class CompanionFollow : MonoBehaviour
     }
     void Destroyed()
     {
-        Destroy(gameObject); 
         FindFirstObjectByType<GameManager>().GameOver();
     }
 }
